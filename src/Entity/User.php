@@ -23,6 +23,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $id;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $username;
+
+    /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
@@ -65,6 +70,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
     /**
      * A visual identifier that represents this user.
      *
@@ -78,10 +95,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @deprecated since Symfony 5.3, use getUserIdentifier instead
      */
-    public function getUsername(): string
-    {
-        return (string) $this->email;
-    }
+//    public function getUsername(): string
+//    {
+//        return (string) $this->email;
+//    }
 
     /**
      * @see UserInterface
@@ -115,6 +132,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->password = $password;
 
         return $this;
+    }
+
+    public function encodePassword(string $clearPassword): self
+    {
+        $encodedPassword = password_hash($clearPassword, PASSWORD_DEFAULT);
+        return $this->setPassword($encodedPassword);
     }
 
     /**
