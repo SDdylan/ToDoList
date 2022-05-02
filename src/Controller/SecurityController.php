@@ -23,4 +23,20 @@ class SecurityController extends AbstractController
             'error'         => $error,
         ]);
     }
+
+    /**
+     * @Route("/login_check", name="login_check")
+     */
+    public function loginCheck(): void
+    {
+        // This code is never executed.
+    }
+
+    /**
+     * @Route("/logout", name="logout")
+     */
+    public function logoutCheck(): void
+    {
+        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+    }
 }
