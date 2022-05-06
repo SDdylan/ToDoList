@@ -48,7 +48,7 @@ class UserControllerTest extends Login
         $this->loginAdmin();
 
         $faker = Factory::create();
-        $user = $this->entityManager->getRepository(User::class)->findLastElement();
+        $user = $this->entityManager->getRepository(User::class)->findLastUser();
 
         $crawler = $this->client->request('GET', '/users/'. $user[0]->getId() . '/edit');
 

@@ -67,7 +67,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     /*
      * Utilisé pour éditer le dernier Utilisateur créé
      */
-    public function findLastElement()
+    public function findLastUser()
     {
         return $this->createQueryBuilder('u')
             ->orderBy('u.id', 'DESC')
