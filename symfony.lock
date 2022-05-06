@@ -1,4 +1,10 @@
 {
+    "composer/pcre": {
+        "version": "3.0.0"
+    },
+    "composer/xdebug-handler": {
+        "version": "3.0.3"
+    },
     "doctrine/annotations": {
         "version": "1.13",
         "recipe": {
