@@ -47,6 +47,32 @@ class TaskRepository extends ServiceEntityRepository
         }
     }
 
+    /*
+     * Utilisé pour éditer la 1ère tâche créé
+     */
+    public function findFirstTask()
+    {
+        return $this->createQueryBuilder('t')
+            ->orderBy('t.id', 'ASC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    /*
+     * Utilisé pour supprimer la dernière tâche créé
+     */
+    public function findLastTask()
+    {
+        return $this->createQueryBuilder('t')
+            ->orderBy('t.id', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Task[] Returns an array of Task objects
     //  */
