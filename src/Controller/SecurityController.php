@@ -17,6 +17,12 @@ class SecurityController extends AbstractController
     {
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
+
+//        $hash = '$2y$10$7idhJNy0Hn0hczxc2TPhWer5jKlk0/u7uRBrvV4mYO1NotngaS.BG';
+//                 '$2y$10$uKHh0Q.OK3KbPm47chaSnOQaqEEfhViuqrj4SflLi/L1j6GwAyDje'
+
+
+//        var_dump(password_hash('123456789@a', PASSWORD_DEFAULT));
         
         return $this->render('security/login.html.twig', [
             'last_username' => $lastUsername,

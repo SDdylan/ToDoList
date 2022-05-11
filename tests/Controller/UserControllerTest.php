@@ -27,6 +27,7 @@ class UserControllerTest extends Login
 
         $crawler = $this->client->request('GET', '/users/create');
 
+        //var_dump($this->client->getResponse()->getContent());
 
         $form = $crawler->selectButton('Ajouter')->form();
         $form['user[username]'] = $faker->firstName();
