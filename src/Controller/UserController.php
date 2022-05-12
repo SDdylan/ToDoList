@@ -60,8 +60,12 @@ class UserController extends AbstractController
      * @Route("/users/{idUser}/edit", name="user_edit")
      * @IsGranted("ROLE_ADMIN")
      */
-    public function editAction(int $idUser, UserRepository $userRepository, Request $request, EntityManagerInterface $entityManager)
-    {
+    public function editAction(
+        int $idUser,
+        UserRepository $userRepository,
+        Request $request,
+        EntityManagerInterface $entityManager
+    ) {
         $user = $userRepository->find($idUser);
         $form = $this->createForm(UserType::class, $user);
 

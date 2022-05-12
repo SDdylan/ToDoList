@@ -38,7 +38,6 @@ class UserType extends AbstractType
                     return [$rolesString];
                 }
             ));
-
     }
 
     public function configureOptions(OptionsResolver $resolver): void
