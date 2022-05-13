@@ -79,6 +79,4 @@ class UserTest extends TestCase
         $this->assertEmpty($this->user->getPassword());
         $this->assertEmpty($this->user->getTasks());
     }
-
-
 }
