@@ -35,6 +35,7 @@ class SecurityControllerTest extends WebTestCase
         $crawler = $client->followRedirect();
         $this->assertResponseIsSuccessful();
 
+        //var_dump($client->getResponse()->getContent());
         $this->assertSame(1, $crawler->filter('a.pull-right.btn.btn-danger')->count());
     }
 

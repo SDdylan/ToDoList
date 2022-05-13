@@ -74,11 +74,10 @@ class TaskControllerTest extends Login
     public function testDeleteAction()
     {
         $this->loginUser();
-        $faker = Factory::create();
 
-        //Plus tôt on à utiliser l'utilisateur User pour créer un tache
+        //Plus tôt on a utilisé l'utilisateur User pour créer un tâche, on va récupérer cette dernière
         $task = $this->entityManager->getRepository(Task::class)->findLastTask();
-        $crawler = $this->client->request('GET', '/tasks/'. $task[0]->getId() . '/delete');
+        $this->client->request('GET', '/tasks/'. $task[0]->getId() . '/delete');
 
         $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
         $this->assertResponseRedirects('/tasks');

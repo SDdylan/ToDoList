@@ -100,12 +100,11 @@ class TaskController extends AbstractController
         if ($this->getUser()->getId() == $task->getUser()->getId()) {
             $entityManager->remove($task);
             $entityManager->flush();
-
             $this->addFlash('success', 'La tâche a bien été supprimée.');
-        } else {
-            $this->addFlash('error', "Seul l'utilisateur ayant créé la tâche peut la supprimer.");
+            return $this->redirectToRoute('task_list');
         }
 
+        $this->addFlash('error', "Seul l'utilisateur ayant créé la tâche peut la supprimer.");
         return $this->redirectToRoute('task_list');
     }
 }
