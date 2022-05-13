@@ -32,7 +32,8 @@ class TaskRepositoryTest extends Login
 
         $this->entityManager->getRepository(Task::class)->remove($task);
 
-        $this->assertNull($this->entityManager->getRepository(Task::class)->findOneBy(['title' => 'Titre de la tâche']));
+        $this->assertNull($this->entityManager->getRepository(Task::class)->findOneBy([
+            'title' => 'Titre de la tâche'
+        ]));
     }
-
 }

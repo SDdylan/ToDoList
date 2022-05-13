@@ -72,5 +72,4 @@ class TaskTest extends TestCase
         $this->assertEmpty($this->task->getContent());
         $this->assertEmpty($this->task->getUser());
     }
-
 }
