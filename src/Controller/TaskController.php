@@ -97,7 +97,8 @@ class TaskController extends AbstractController
      */
     public function deleteTaskAction(Task $task, EntityManagerInterface $entityManager)
     {
-        if ($this->getUser()->getId() == $task->getUser()->getId()) {
+        $isAdmin = in_array('ROLE_ADMIN', $this->getUser()->getRoles());
+        if (($this->getUser()->getId() == $task->getUser()->getId()) || $isAdmin) {
             $entityManager->remove($task);
             $entityManager->flush();
             $this->addFlash('success', 'La tâche a bien été supprimée.');

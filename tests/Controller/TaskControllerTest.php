@@ -41,8 +41,8 @@ class TaskControllerTest extends Login
         $this->loginUser();
         $faker = Factory::create();
 
-        //Dans les fixtures, l'utilisateur USER appartient aux premières tâches créée.
-        $task = $this->entityManager->getRepository(Task::class)->findFirstTask();
+        //On reprend la tâche créé juste au dessus
+        $task = $this->entityManager->getRepository(Task::class)->findLastTask();
         $crawler = $this->client->request('GET', '/tasks/'. $task[0]->getId() . '/edit');
 
         $form = $crawler->selectButton('Modifier')->form();
@@ -89,12 +89,12 @@ class TaskControllerTest extends Login
 
     public function testBadDeleteAction()
     {
-        $this->loginAdmin();
+        $this->loginUser();
         $faker = Factory::create();
 
-        //Ici, l'admin n'est pas lié a la tache en question.
+        //Ici, l'utilisateur n'est pas lié a la tache en question.
         $task = $this->entityManager->getRepository(Task::class)->findFirstTask();
-        $crawler = $this->client->request('GET', '/tasks/'. $task[0]->getId() . '/delete');
+        $this->client->request('GET', '/tasks/'. $task[0]->getId() . '/delete');
 
         $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
         $this->assertResponseRedirects('/tasks');
