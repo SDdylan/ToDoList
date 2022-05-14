@@ -31,10 +31,19 @@ class AppFixtures extends Fixture
 
         $manager->persist($admin);
 
+        $anonyme = new User();
+        $anonyme->setEmail('anonyme@gmail.com')
+            ->setRoles(['ROLE_USER'])
+            ->encodePassword($faker->password(6))
+            ->setUsername('anonyme');
+
+        $manager->persist($anonyme);
+
+
         //creation de taches de test
         for ($i = 0; $i<3; $i++) {
             $task = new Task();
-            $task->setUser($user)
+            $task->setUser($anonyme)
                 ->setCreatedAt(new \DateTime())
                 ->setTitle($faker->sentence(2))
                 ->setContent($faker->sentence(10))
@@ -45,7 +54,7 @@ class AppFixtures extends Fixture
 
         for ($i = 0; $i<3; $i++) {
             $task = new Task();
-            $task->setUser($admin)
+            $task->setUser($user)
                 ->setCreatedAt(new \DateTime())
                 ->setTitle($faker->sentence(2))
                 ->setContent($faker->sentence(10))
